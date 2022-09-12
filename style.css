@@ -45,8 +45,17 @@ header {
 
 #banlace h2{
     color: white;
+    margin-top: 0;
 
 }
+/* Cards ******************** */
+.card{
+    background: white;
+    padding: 1.5rem 2rem;
+    border-radius: 0.25rem;
+    margin-bottom: 2rem;
+}
+
 
 /* Footer ******************** */
 
