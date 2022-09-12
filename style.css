@@ -1,11 +1,55 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400&display=swap');
+/* Gobral ******************** */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400&display=swap");
 
-*{
-margin: 0;
-padding: 0;
-box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-body{
-    background: #f0f2f5;
-    font-family: 'Poppins', sans-serif;
+
+body {
+  background: #f0f2f5;
+  font-family: "Poppins", sans-serif;
+}
+
+.container {
+    width: min(90vw, 800px);
+    margin: auto;
+}
+/* Title ******************** */
+h2{
+    margin-top: 3.2rem;
+    margin-bottom: 0.8rem;
+    color: #363f5f;
+    font-weight: normal;
+}
+
+
+/* Header ******************** */
+header {
+  background: #2d4a22;
+  padding: 2rem 0 10rem;
+  text-align: center;
+}
+
+#logo {
+  color: #fff;
+  font-weight: 100;
+}
+/* Banlace ******************** */
+
+#banlace {
+    /* jogada para subir com todos aparti do  banlace - atribuido um valor negativo na margem top */
+    margin-top: -8rem;
+}
+
+#banlace h2{
+    color: white;
+
+}
+
+/* Footer ******************** */
+
+footer {
+  text-align: center;
 }
