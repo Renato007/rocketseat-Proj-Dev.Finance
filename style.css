@@ -106,6 +106,12 @@ header {
   color: white;
 }
 /* Table ******************** */
+#transaction{
+display: block;
+width: 100%;
+overflow-x: auto;
+}
+
 #data-table {
   width: 100%;
   border-spacing: 0 0.5rem; /* permite ajustar a borda */
