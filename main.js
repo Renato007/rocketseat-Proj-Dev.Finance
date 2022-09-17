@@ -27,6 +27,12 @@ const transaction = [
     amount: -20000,
     date: "23/01/2021",
   },
+  {
+    id: 4,
+    description: "App",
+    amount: 200000,
+    date: "23/01/2021",
+  },
 ];
 
 /* ___________________ */
@@ -78,6 +84,7 @@ const DOM = {
     return html;
   },
 };
-DOM.addTransaction(transaction[0]);
-DOM.addTransaction(transaction[1]);
-DOM.addTransaction(transaction[2]);
+
+transaction.forEach(function(transaction){
+    DOM.addTransaction(transaction)
+});
