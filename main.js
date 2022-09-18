@@ -8,7 +8,7 @@ const Modal = {
 };
 
 /* linta com as transações*/
-const transaction = [
+const transactions = [
   {
     id: 1,
     description: "Luz",
@@ -36,29 +36,48 @@ const transaction = [
 ];
 
 const Transaction = {
+  all: transactions,
+  add(transaction) {
+    Transaction.all.push(transaction);
+
+    App.reload()
+  },
+
   incomes() {
-    //somar as entradas
+    let income = 0;
+    //pegar todas as transações
+    // para cada transação
+    Transaction.all.forEach((transaction) => {
+      if (transaction.amount > 0) {
+        income += transaction.amount;
+      }
+    });
+
+    return income;
   },
   expenses() {
-    //somar as saídas
+    let expense = 0;
+    Transaction.all.forEach((transaction) => {
+      if (transaction.amount < 0) {
+        expense += transaction.amount;
+      }
+    });
+    return expense;
   },
   total() {
-    //entradas - saídas
+    return Transaction.incomes() + Transaction.expenses();
   },
 };
 
 const DOM = {
-    transactionConteiner: document.querySelector('#data-table tbody'),
+  transactionConteiner: document.querySelector("#data-table tbody"),
 
   addTransaction(transaction, index) {
     const tr = document.createElement("tr");
     tr.innerHTML = DOM.innerHTMLTransaction(transaction);
 
     DOM.transactionConteiner.appendChild(tr);
-
   },
-
-  /* montador de uma nova transição */
   innerHTMLTransaction(transaction) {
     const CSSclass = transaction.amount > 0 ? "income" : "expense";
 
@@ -76,25 +95,67 @@ const DOM = {
 
     return html;
   },
+
+  upDateBalance() {
+    document.getElementById("incomeDisplay").innerHTML = Utils.formatCurrecy(
+      Transaction.incomes()
+    );
+    document.getElementById("expenseDisplay").innerHTML = Utils.formatCurrecy(
+      Transaction.expenses()
+    );
+    document.getElementById("totalDisplay").innerHTML = Utils.formatCurrecy(
+      Transaction.total()
+    );
+  },
+
+  clearTransactions(){
+    DOM.transactionConteiner.innerHTML = ""
+  }
 };
 /* Utilidades */
 const Utils = {
-    formatCurrecy(value){
-        const signal = Number(value) < 0 ? "-" :""
+  formatCurrecy(value) {
+    const signal = Number(value) < 0 ? "-" : "";
 
-        value = String(value).replace(/\D/g, "") /* pega todos que não for numero e Substitue por ""  */
+    value = String(value).replace(
+      /\D/g,
+      ""
+    ); /* pega todos que não for numero e Substitue por ""  */
 
-        value = Number (value) / 100
+    value = Number(value) / 100;
 
-        value = value.toLocaleString("pt-BR", {
-            style: "currency",
-            currency: "BRL"
-        })
+    value = value.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    });
 
-        return signal + value;
-    }
+    return signal + value;
+  },
+};
+
+const App = {
+  init(){
+    Transaction.all.forEach((transaction) => {
+      DOM.addTransaction(transaction);
+    });
+    
+    DOM.upDateBalance();
+
+  },
+  reload(){
+    DOM.clearTransactions()
+    App.init()
+  },
 }
 
-transaction.forEach(function(transaction){
-    DOM.addTransaction(transaction)
+App.init();
+    
+Transaction.add({
+  id: 39,
+  description: "Alo",
+  amount: 200,
+  date: "23/01/2021",
 });
+
+
+
