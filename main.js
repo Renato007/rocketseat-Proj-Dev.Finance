@@ -7,44 +7,40 @@ const Modal = {
   },
 };
 
-/* linta com as transações*/
-const transactions = [
-  {
-    description: "Luz",
-    amount: -50000,
-    date: "23/01/2021",
-  },
-  {
-    description: "Website",
-    amount: 500000,
-    date: "23/01/2021",
-  },
-  {
-    description: "Internet",
-    amount: -20000,
-    date: "23/01/2021",
-  },
-  {
-    description: "App",
-    amount: 200000,
-    date: "23/01/2021",
-  },
-];
-
 const Transaction = {
-  all: transactions,
+  all: [
+    {
+      description: "Luz",
+      amount: -50000,
+      date: "23/01/2021",
+    },
+    {
+      description: "Website",
+      amount: 500000,
+      date: "23/01/2021",
+    },
+    {
+      description: "Internet",
+      amount: -20000,
+      date: "23/01/2021",
+    },
+    {
+      description: "App",
+      amount: 200000,
+      date: "23/01/2021",
+    },
+  ],
+
   add(transaction) {
     Transaction.all.push(transaction);
 
-    App.reload()
+    App.reload();
   },
 
-  remove(index){
-    Transaction.all.splice(index, 1)
+  remove(index) {
+    Transaction.all.splice(index, 1);
 
-    App.reload()
-
-
+    App.reload();
   },
 
   incomes() {
@@ -112,9 +108,9 @@ const DOM = {
     );
   },
 
-  clearTransactions(){
-    DOM.transactionConteiner.innerHTML = ""
-  }
+  clearTransactions() {
+    DOM.transactionConteiner.innerHTML = "";
+  },
 };
 /* Utilidades */
 const Utils = {
@@ -137,24 +133,39 @@ const Utils = {
   },
 };
 
+const Form = {
+  formatData(){
+    console.log('Formatar os Dados')
+  },
+  valiDateFields(){
+    console.log('validar os campos')
+  },
+  submit(event) {
+    event.preventDefault();
+
+    //verificar se todas as informações foram preenchidas
+    Form.valiDateFields()
+    // formatar os dados para salvar
+    //Form.formatData()
+    //salvar
+    //apagar os dados do formulário 
+    //modal feche
+    //atualizar a aplicação
+  },
+};
+
 const App = {
-  init(){
+  init() {
     Transaction.all.forEach((transaction) => {
       DOM.addTransaction(transaction);
     });
-    
-    DOM.upDateBalance();
 
+    DOM.upDateBalance();
   },
-  reload(){
-    DOM.clearTransactions()
-    App.init()
+  reload() {
+    DOM.clearTransactions();
+    App.init();
   },
-}
+};
 
 App.init();
-    
-
-
-
-
